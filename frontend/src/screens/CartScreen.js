@@ -5,7 +5,7 @@ import {addToCart, deleteFromCart} from '../actions//cartActions'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {Row, Col, ListGroup, Image, Form, Button, Cardm, FormControl} from 'react-bootstrap';
+import {Row, Col, ListGroup, Image, Form, Button, Card, FormControl} from 'react-bootstrap';
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id;

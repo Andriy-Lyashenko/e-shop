@@ -3,8 +3,10 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js'
 
 import colors from 'colors';
+import bodyParser from 'body-parser'
 
 import productRouter from './routes/productRoute.js'
+import userRouter from './routes/userRoutes.js'
 import {notFound, errorHandler} from './middlewares/errorMiddlewares.js'
 
 
@@ -16,6 +18,13 @@ dotenv.config();
 //Connection to DB
 connectDB();
 
+app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
+
 app.use((req,res,next)=>{
     console.log(req.originalUrl.white.underline);
     next()
@@ -26,6 +35,7 @@ app.get('/', (req, res)=> {
 });
 
 app.use('/api/products', productRouter);
+app.use('/api/users', userRouter)
 
 //Error handlers middlewares
 app.use(notFound);
